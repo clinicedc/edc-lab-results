@@ -1,6 +1,6 @@
+from django.apps import apps as django_apps
 from django.db import models
 from edc_constants.choices import YES_NO, YES_NO_NA
-from edc_registration.models import RegisteredSubject
 from edc_reportable import site_reportables
 
 
@@ -31,7 +31,8 @@ class BloodResultsMethodsModelMixin(models.Model):
         super().save(*args, **kwargs)
 
     def get_summary_options(self):
-        registered_subject = RegisteredSubject.objects.get(
+        model_cls = django_apps.get_model("edc_registration.registeredsubject")
+        registered_subject = model_cls.objects.get(
             subject_identifier=self.subject_visit.subject_identifier
         )
         return dict(

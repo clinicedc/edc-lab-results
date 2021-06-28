@@ -8,14 +8,3 @@ from .constants import (
     BLOOD_RESULTS_RFT_ACTION,
 )
 from .form_validator_mixins import BloodResultsFormValidatorMixin
-from .model_mixins import (
-    BloodResultsFieldsModelMixin,
-    BloodResultsMethodsModelMixin,
-    BloodResultsModelMixin,
-    HaemoglobinModelMixin,
-    HctModelMixin,
-    PlateletsModelMixin,
-    RbcModelMixin,
-    RequisitionModelMixin,
-    WbcModelMixin,
-)

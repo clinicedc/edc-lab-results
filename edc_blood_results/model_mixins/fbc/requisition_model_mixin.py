@@ -4,7 +4,7 @@ from edc_lab.utils import get_requisition_model_name
 from edc_model import models as edc_models
 
 
-class RequisitionModelMixin(models.Models):
+class RequisitionModelMixin(models.Model):
 
     requisition = models.ForeignKey(
         get_requisition_model_name(),

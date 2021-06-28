@@ -1,6 +1,6 @@
 from edc_constants.constants import YES
 from edc_lab.form_validators import CrfRequisitionFormValidatorMixin
-from edc_reportable import GRADE3, GRADE4, ReportablesFormValidatorMixin
+from edc_reportable import ReportablesFormValidatorMixin
 
 
 class BloodResultsFormValidatorMixin(
@@ -8,14 +8,11 @@ class BloodResultsFormValidatorMixin(
     CrfRequisitionFormValidatorMixin,
 ):
 
-    reportable_grades = [GRADE3, GRADE4]
-    reference_list_name = None
     requisition_field = "requisition"
     assay_datetime_field = "assay_datetime"
     value_field_suffix = "_value"
-    reportable_labels = []
-    panels = []
-    poc_panels = []
+    panel = None
+    poc_panel = None
 
     @property
     def field_values(self):
@@ -35,27 +32,27 @@ class BloodResultsFormValidatorMixin(
                 self.requisition_field, self.assay_datetime_field, *self.panels
             )
 
-        for label in self.reportable_labels:
+        for utest_id in self.panel.utest_ids:
             try:
-                label = label.split(self.value_field_suffix)
+                utest_id = utest_id.split(self.value_field_suffix)
             except ValueError:
                 pass
-            if f"{label}_units" in self.cleaned_data:
+            if f"{utest_id}_units" in self.cleaned_data:
                 self.required_if_not_none(
-                    field=f"{label}{self.value_field_suffix or ''}",
-                    field_required=f"{label}_units",
+                    field=f"{utest_id}{self.value_field_suffix or ''}",
+                    field_required=f"{utest_id}_units",
                     field_required_evaluate_as_int=True,
                 )
-            if f"{label}_abnormal" in self.cleaned_data:
+            if f"{utest_id}_abnormal" in self.cleaned_data:
                 self.required_if_not_none(
-                    field=f"{label}{self.value_field_suffix or ''}",
-                    field_required=f"{label}_abnormal",
+                    field=f"{utest_id}{self.value_field_suffix or ''}",
+                    field_required=f"{utest_id}_abnormal",
                     field_required_evaluate_as_int=True,
                 )
-            if f"{label}_reportable" in self.cleaned_data:
+            if f"{utest_id}_reportable" in self.cleaned_data:
                 self.required_if_not_none(
-                    field=f"{label}{self.value_field_suffix or ''}",
-                    field_required=f"{label}_reportable",
+                    field=f"{utest_id}{self.value_field_suffix or ''}",
+                    field_required=f"{utest_id}_reportable",
                     field_required_evaluate_as_int=True,
                 )
 
