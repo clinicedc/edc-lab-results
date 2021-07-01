@@ -1,3 +1,5 @@
+import pdb
+
 from django.apps import apps as django_apps
 from django.db import models
 from edc_constants.choices import YES_NO, YES_NO_NA
@@ -26,6 +28,10 @@ class BloodResultsFieldsModelMixin(models.Model):
 
 
 class BloodResultsMethodsModelMixin(models.Model):
+
+    value_field_suffix = "_value"
+    units_field_suffix = "_units"
+
     def save(self, *args, **kwargs):
         self.summary = "\n".join(self.get_summary())
         super().save(*args, **kwargs)
@@ -41,6 +47,9 @@ class BloodResultsMethodsModelMixin(models.Model):
             report_datetime=self.subject_visit.report_datetime,
         )
 
+    def get_reference_range_collection_name(self):
+        return self.requisition.panel_object.reference_range_collection_name
+
     def get_summary(self):
         opts = self.get_summary_options()
         summary = []
@@ -49,15 +58,17 @@ class BloodResultsMethodsModelMixin(models.Model):
                 label, _ = field_name.split(self.value_field_suffix)
             except ValueError:
                 label = field_name
-            if grp := site_reportables.get(self.reportables_group_name).get(label):
+            if reference_grp := site_reportables.get(
+                self.get_reference_range_collection_name()
+            ).get(label):
                 if value := getattr(self, field_name):
                     units = getattr(self, f"{label}{self.units_field_suffix}")
                     opts.update(units=units)
-                    grade = grp.get_grade(value, **opts)
+                    grade = reference_grp.get_grade(value, **opts)
                     if grade and grade.grade:
                         summary.append(f"{field_name}: {grade.description}.")
                     elif not grade:
-                        normal = grp.get_normal(value, **opts)
+                        normal = reference_grp.get_normal(value, **opts)
                         if not normal:
                             summary.append(f"{field_name}: {value} {units} is abnormal")
         return summary
@@ -94,11 +105,6 @@ class BloodResultsModelMixin(
         reportables name: creatinine
         value_field_suffix = None
     """
-
-    action_name = None
-    reportables_group_name = "default"
-    value_field_suffix = "_value"
-    units_field_suffix = "_units"
 
     class Meta:
         abstract = True

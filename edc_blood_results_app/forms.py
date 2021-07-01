@@ -11,7 +11,6 @@ from .models import BloodResultsFbc
 
 class BloodResultsFbcFormValidator(BloodResultsFormValidatorMixin, FormValidator):
     panels = [fbc_panel]
-    reference_list_name = "my_reportables"
 
 
 class BloodResultsFbcForm(ActionItemFormMixin, CrfModelFormMixin, forms.ModelForm):
