@@ -1,14 +1,9 @@
 from django.db import models
-from edc_constants.choices import FASTING_CHOICES, YES_NO
+from edc_constants.choices import YES_NO
 from edc_constants.constants import FASTING
 from edc_lab.choices import RESULT_QUANTIFIER
 from edc_lab.constants import EQ
-from edc_reportable import (
-    MILLIGRAMS_PER_DECILITER,
-    MILLIMOLES_PER_LITER,
-    MILLIMOLES_PER_LITER_DISPLAY,
-    PERCENT,
-)
+from edc_reportable import PERCENT
 from edc_reportable.choices import REPORTABLE
 
 

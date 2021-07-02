@@ -24,24 +24,25 @@ class GlucoseModelMixin(models.Model):
         max_length=25,
         choices=FASTING_CHOICES,
         null=True,
-        blank=True,
+        blank=False,
     )
 
-    gluc_value = models.DecimalField(
+    glucose_value = models.DecimalField(
         verbose_name="Blood Glucose",
         max_digits=8,
         decimal_places=4,
         null=True,
         blank=True,
+        help_text="A `HIGH` reading may be entered as 9999.99",
     )
 
-    gluc_quantifier = models.CharField(
+    glucose_quantifier = models.CharField(
         max_length=10,
         choices=RESULT_QUANTIFIER,
         default=EQ,
     )
 
-    gluc_units = models.CharField(
+    glucose_units = models.CharField(
         verbose_name="units",
         max_length=15,
         choices=(
@@ -52,11 +53,11 @@ class GlucoseModelMixin(models.Model):
         blank=True,
     )
 
-    gluc_abnormal = models.CharField(
+    glucose_abnormal = models.CharField(
         verbose_name="abnormal", choices=YES_NO, max_length=25, null=True, blank=True
     )
 
-    gluc_reportable = models.CharField(
+    glucose_reportable = models.CharField(
         verbose_name="reportable",
         choices=REPORTABLE,
         max_length=25,
