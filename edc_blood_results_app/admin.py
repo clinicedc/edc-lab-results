@@ -4,7 +4,7 @@
 # from respond_labs.panels import fbc_panel
 #
 # from edc_blood_results.admin import BloodResultsModelAdminMixin
-# from edc_blood_results.fieldsets import BloodResultPanel
+# from edc_blood_results.fieldsets import BloodResultFieldset
 #
 # from .forms import BloodResultsFbcForm
 # from .models import BloodResultsFbc
@@ -15,4 +15,4 @@
 #     BloodResultsModelAdminMixin, ModelAdminCrfDashboardMixin, SimpleHistoryAdmin
 # ):
 #     form = BloodResultsFbcForm
-#     fieldsets = BloodResultPanel(fbc_panel).fieldsets
+#     fieldsets = BloodResultFieldset(fbc_panel).fieldsets

@@ -1,5 +1,4 @@
 from django_audit_fields import audit_fieldset_tuple
-from respond_labs.panels import fbc_panel
 
 panel_conclusion_fieldset = (
     "Conclusion",
@@ -8,32 +7,26 @@ panel_conclusion_fieldset = (
 panel_summary_fieldset = ("Summary", {"classes": ("collapse",), "fields": ("summary",)})
 
 
-class BloodResultPanelError(Exception):
+class BloodResultFieldsetError(Exception):
     pass
 
 
-class BloodResultPanel:
-    def __init__(self, panel, title=None, model_cls=None):
+class BloodResultFieldset:
+    """A class to generate a modeladmin `fieldsets` using the
+    lab panel for this `blood result`.
+    """
+
+    def __init__(self, panel, title=None, model_cls=None, extra_fieldsets=None):
         self.panel = panel
         self.title = title or panel.name
         self.model_cls = model_cls
+        self.extra_fieldsets = extra_fieldsets
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.panel})"
 
     def __str__(self):
         return f"{self.__class__.__name__}({self.panel})"
-
-    @property
-    def utest_ids(self):
-        utest_ids = []
-        for item in self.panel.utest_ids:
-            try:
-                utest_id, _ = item
-            except ValueError:
-                utest_id = item
-            utest_ids.append(utest_id)
-        return utest_ids
 
     @property
     def fieldsets(self):
@@ -55,6 +48,8 @@ class BloodResultPanel:
                 audit_fieldset_tuple,
             ]
         )
+        for pos, fieldset in self.extra_fieldsets or []:
+            fieldsets.insert(pos, fieldset)
         return tuple(fieldsets)
 
     def get_panel_item_fieldset(self, code, title=None):
@@ -71,7 +66,7 @@ class BloodResultPanel:
                 try:
                     getattr(self.model_cls, field)
                 except AttributeError as e:
-                    raise BloodResultPanelError(f"{e}. See {self}")
+                    raise BloodResultFieldset(f"{e}. See {self}")
 
         return (
             title,

@@ -11,6 +11,10 @@ class BloodResultsFormValidatorMixin(
     panel = None
     panels = None
 
+    def evaluate_value(self, field_name):
+        """A hook to evaluate a field value"""
+        pass
+
     def clean(self):
         self.required_if_true(
             any(self.fields_names_with_values), field_required=self.requisition_field
@@ -42,6 +46,7 @@ class BloodResultsFormValidatorMixin(
                         field_required=f"{utest_id}_reportable",
                         field_required_evaluate_as_int=True,
                     )
+                self.evaluate_value(f"{utest_id}_value")
             self.validate_reportable_fields(
                 reference_range_collection_name=(
                     requisition.panel_object.reference_range_collection_name
