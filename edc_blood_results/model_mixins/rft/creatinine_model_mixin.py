@@ -1,6 +1,10 @@
 from django.db import models
 from edc_constants.choices import YES_NO
-from edc_reportable import MILLIGRAMS_PER_DECILITER
+from edc_reportable import (
+    MICROMOLES_PER_LITER,
+    MICROMOLES_PER_LITER_DISPLAY,
+    MILLIGRAMS_PER_DECILITER,
+)
 from edc_reportable.choices import REPORTABLE
 
 
@@ -12,7 +16,10 @@ class CreatinineModelMixin(models.Model):
 
     creatinine_units = models.CharField(
         verbose_name="units",
-        choices=((MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),),
+        choices=(
+            (MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),
+            (MICROMOLES_PER_LITER, MICROMOLES_PER_LITER_DISPLAY),
+        ),
         max_length=25,
         null=True,
         blank=True,

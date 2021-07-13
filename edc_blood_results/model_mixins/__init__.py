@@ -20,6 +20,6 @@ from .lft import (
     AstModelMixin,
     GgtModelMixin,
 )
-from .lipid import HdlModelMixin, LdlModelMixin, TrigModelMixin
+from .lipid import CholModelMixin, HdlModelMixin, LdlModelMixin, TrigModelMixin
 from .requisition_model_mixin import RequisitionModelMixin
 from .rft import CreatinineModelMixin, EgfrModelMixin, UreaModelMixin, UricModelMixin
