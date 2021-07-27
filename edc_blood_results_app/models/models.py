@@ -1,4 +1,4 @@
-from edc_crf.model_mixins import CrfWithActionModelMixin
+from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
 from edc_model import models as edc_models
 
 from edc_blood_results import BLOOD_RESULTS_FBC_ACTION
