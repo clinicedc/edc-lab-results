@@ -3,7 +3,7 @@ import pdb
 from django.apps import apps as django_apps
 from django.db import models
 from edc_constants.choices import YES_NO, YES_NO_NA
-from edc_reportable import site_reportables
+from edc_reportable.site_reportables import site_reportables
 
 
 class BloodResultsFieldsModelMixin(models.Model):
@@ -28,6 +28,8 @@ class BloodResultsFieldsModelMixin(models.Model):
 
 
 class BloodResultsMethodsModelMixin(models.Model):
+
+    """Requires additional attrs `subject_visit` and `requisition`"""
 
     value_field_suffix = "_value"
     units_field_suffix = "_units"
@@ -97,13 +99,16 @@ class BloodResultsModelMixin(
     For example:
         field_name = creatinine_value
         reportables name: creatinine
-        value_field_suffix = "_value"
+        value_field_suffix = "_value"z
 
         -OR-
 
         field_name = creatinine
         reportables name: creatinine
         value_field_suffix = None
+
+    Requires additional attrs `subject_visit` and `requisition` from RequisitionModelMixin
+
     """
 
     class Meta:
