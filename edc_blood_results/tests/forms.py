@@ -17,6 +17,10 @@ class BloodResultsFbcForm(ActionItemFormMixin, CrfModelFormMixin, forms.ModelFor
 
     form_validator_cls = BloodResultsFbcFormValidator
 
+    def validate_against_consent(self):
+        """Skip for tests"""
+        pass
+
     class Meta:
         model = BloodResultsFbc
         fields = "__all__"

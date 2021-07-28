@@ -1,5 +1,6 @@
+from django.apps import apps as django_apps
 from django.conf import settings
-from edc_action_item import Action
+from edc_action_item import Action, site_action_items
 from edc_adverse_event.constants import AE_INITIAL_ACTION
 from edc_constants.constants import HIGH_PRIORITY, YES
 from edc_visit_schedule.utils import is_baseline
@@ -14,7 +15,9 @@ from .constants import (
     BLOOD_RESULTS_RFT_ACTION,
 )
 
-subject_app_label = settings.SUBJECT_APP_LABEL
+subject_app_label = getattr(
+    settings, "EDC_BLOOD_RESULTS_MODEL_APP_LABEL" or settings.SUBJECT_APP_LABEL
+)
 
 
 class BaseBloodResultsAction(Action):
@@ -81,3 +84,25 @@ class BloodResultsHba1cAction(BaseBloodResultsAction):
     name = BLOOD_RESULTS_HBA1C_ACTION
     display_name = "Reportable HbA1c"
     reference_model = f"{subject_app_label}.bloodresultshba1c"
+
+
+def register_actions():
+    for action_item in [
+        BloodResultsLftAction,
+        BloodResultsRftAction,
+        BloodResultsFbcAction,
+        BloodResultsLipidAction,
+        BloodResultsEgfrAction,
+        BloodResultsGluAction,
+        BloodResultsHba1cAction,
+    ]:
+
+        try:
+            django_apps.get_model(action_item.reference_model)
+        except LookupError as e:
+            pass
+        else:
+            site_action_items.register(action_item)
+
+
+register_actions()
