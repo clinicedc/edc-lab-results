@@ -16,7 +16,7 @@ from .constants import (
 )
 
 subject_app_label = getattr(
-    settings, "EDC_BLOOD_RESULTS_MODEL_APP_LABEL" or settings.SUBJECT_APP_LABEL
+    settings, "EDC_BLOOD_RESULTS_MODEL_APP_LABEL", settings.SUBJECT_APP_LABEL
 )
 
 
