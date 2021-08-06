@@ -16,11 +16,19 @@ class BloodResultFieldset:
     lab panel for this `blood result`.
     """
 
-    def __init__(self, panel, title=None, model_cls=None, extra_fieldsets=None):
+    def __init__(
+        self,
+        panel,
+        title=None,
+        model_cls=None,
+        extra_fieldsets=None,
+        excluded_utest_ids=None,
+    ):
         self.panel = panel
         self.title = title or panel.name
         self.model_cls = model_cls
         self.extra_fieldsets = extra_fieldsets
+        self.excluded_utest_ids = excluded_utest_ids or []
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.panel})"
@@ -35,6 +43,8 @@ class BloodResultFieldset:
             (self.title, {"fields": ["requisition", "assay_datetime"]}),
         ]
         for item in self.panel.utest_ids:
+            if item in self.excluded_utest_ids:
+                continue
             try:
                 code, title = item
             except ValueError:
@@ -66,7 +76,7 @@ class BloodResultFieldset:
                 try:
                     getattr(self.model_cls, field)
                 except AttributeError as e:
-                    raise BloodResultFieldset(f"{e}. See {self}")
+                    raise BloodResultFieldsetError(f"{e}. See {self}")
 
         return (
             title,

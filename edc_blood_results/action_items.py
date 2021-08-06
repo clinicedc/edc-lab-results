@@ -10,6 +10,7 @@ from .constants import (
     BLOOD_RESULTS_FBC_ACTION,
     BLOOD_RESULTS_GLU_ACTION,
     BLOOD_RESULTS_HBA1C_ACTION,
+    BLOOD_RESULTS_INSULIN_ACTION,
     BLOOD_RESULTS_LFT_ACTION,
     BLOOD_RESULTS_LIPID_ACTION,
     BLOOD_RESULTS_RFT_ACTION,
@@ -86,15 +87,22 @@ class BloodResultsHba1cAction(BaseBloodResultsAction):
     reference_model = f"{subject_app_label}.bloodresultshba1c"
 
 
+class BloodResultsInsulinAction(BaseBloodResultsAction):
+    name = BLOOD_RESULTS_INSULIN_ACTION
+    display_name = "Reportable Insulin"
+    reference_model = f"{subject_app_label}.bloodresultsins"
+
+
 def register_actions():
     for action_item in [
-        BloodResultsLftAction,
-        BloodResultsRftAction,
-        BloodResultsFbcAction,
-        BloodResultsLipidAction,
         BloodResultsEgfrAction,
+        BloodResultsFbcAction,
         BloodResultsGluAction,
         BloodResultsHba1cAction,
+        BloodResultsInsulinAction,
+        BloodResultsLftAction,
+        BloodResultsLipidAction,
+        BloodResultsRftAction,
     ]:
 
         try:
