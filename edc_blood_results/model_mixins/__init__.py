@@ -12,6 +12,7 @@ from .fbc import (
 )
 from .glucose_model_mixin import GlucoseModelMixin
 from .hba1c_model_mixin import Hba1cModelMixin
+from .insulin_model_mixin import InsulinModelMixin
 from .lft import (
     AlbuminModelMixin,
     AlpModelMixin,
