@@ -31,9 +31,6 @@ class BloodResultsMethodsModelMixin(models.Model):
 
     """Requires additional attrs `subject_visit` and `requisition`"""
 
-    value_field_suffix = "_value"
-    units_field_suffix = "_units"
-
     def save(self, *args, **kwargs):
         self.summary = "\n".join(self.get_summary())
         super().save(*args, **kwargs)
@@ -57,17 +54,19 @@ class BloodResultsMethodsModelMixin(models.Model):
         summary = []
         for field_name in [f.name for f in self._meta.fields]:
             try:
-                label, _ = field_name.split(self.value_field_suffix)
+                utest_id, _ = field_name.split("_value")
             except ValueError:
-                label = field_name
+                utest_id = field_name
             if reference_grp := site_reportables.get(
                 self.get_reference_range_collection_name()
-            ).get(label):
+            ).get(utest_id):
                 if value := getattr(self, field_name):
-                    units = getattr(self, f"{label}{self.units_field_suffix}")
+                    units = getattr(self, f"{utest_id}_units")
                     opts.update(units=units)
                     grade = reference_grp.get_grade(value, **opts)
                     if grade and grade.grade:
+                        setattr(self, f"{utest_id}_grade", grade.grade)
+                        setattr(self, f"{utest_id}_grade_description", grade.description)
                         summary.append(f"{field_name}: {grade.description}.")
                     elif not grade:
                         normal = reference_grp.get_normal(value, **opts)
