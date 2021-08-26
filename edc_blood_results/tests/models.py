@@ -1,5 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from edc_crf.crf_model_mixin import CrfModelMixin
 from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
 from edc_model import models as edc_models
 from edc_reportable import GRAMS_PER_DECILITER
@@ -8,6 +9,7 @@ from edc_blood_results import BLOOD_RESULTS_FBC_ACTION
 from edc_blood_results.model_mixins import (
     BloodResultsModelMixin,
     HaemoglobinModelMixin,
+    Hba1cModelMixin,
     HctModelMixin,
     PlateletsModelMixin,
     RbcModelMixin,
@@ -54,3 +56,16 @@ class AbcModelMixin(
 
     class Meta:
         abstract = True
+
+
+# this model does not include the requisition and action item mixins
+class BloodResultsHba1c(
+    CrfModelMixin,
+    RequisitionModelMixin,
+    Hba1cModelMixin,
+    BloodResultsModelMixin,
+    edc_models.BaseUuidModel,
+):
+    class Meta(edc_models.BaseUuidModel.Meta):
+        verbose_name = "HbA1c"
+        verbose_name_plural = "HbA1c"
