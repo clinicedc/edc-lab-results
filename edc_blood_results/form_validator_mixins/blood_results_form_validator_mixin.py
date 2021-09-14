@@ -1,4 +1,3 @@
-import pdb
 from collections import namedtuple
 
 from edc_constants.constants import NO, YES
