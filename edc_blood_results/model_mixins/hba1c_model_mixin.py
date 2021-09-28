@@ -1,6 +1,5 @@
 from django.db import models
 from edc_constants.choices import YES_NO
-from edc_constants.constants import FASTING
 from edc_lab.choices import RESULT_QUANTIFIER
 from edc_lab.constants import EQ
 from edc_reportable import PERCENT
@@ -51,12 +50,6 @@ class Hba1cModelMixin(models.Model):
         null=True,
         blank=True,
     )
-
-    def get_summary_options(self):
-        opts = super().get_summary_options()
-        fasting = True if self.fasting == FASTING else False
-        opts.update(fasting=fasting)
-        return opts
 
     class Meta:
         abstract = True
