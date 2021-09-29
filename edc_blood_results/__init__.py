@@ -8,4 +8,3 @@ from .constants import (
     BLOOD_RESULTS_LIPID_ACTION,
     BLOOD_RESULTS_RFT_ACTION,
 )
-from .form_validator_mixins import BloodResultsFormValidatorMixin

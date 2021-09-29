@@ -15,7 +15,7 @@ class AlbuminModelMixin(
             (GRAMS_PER_LITER, GRAMS_PER_LITER),
         ),
         decimal_places=1,
-        validators=[MinValueValidator(1.0), MaxValueValidator(999.0)],
+        validators=[MinValueValidator(1.0), MaxValueValidator(9999.0)],
     ),
     models.Model,
 ):
@@ -28,7 +28,7 @@ class AlpModelMixin(
         utest_id="alp",
         units_choices=((IU_LITER, IU_LITER_DISPLAY),),
         decimal_places=1,
-        validators=[MinValueValidator(1.0), MaxValueValidator(999.0)],
+        validators=[MinValueValidator(1.0), MaxValueValidator(9999.0)],
     ),
     models.Model,
 ):
@@ -41,6 +41,7 @@ class AltModelMixin(
         utest_id="alt",
         units_choices=((IU_LITER, IU_LITER_DISPLAY),),
         decimal_places=1,
+        validators=[MinValueValidator(1.0), MaxValueValidator(9999.0)],
     ),
     models.Model,
 ):
@@ -53,7 +54,7 @@ class AstModelMixin(
         utest_id="ast",
         units_choices=((IU_LITER, IU_LITER_DISPLAY),),
         decimal_places=0,
-        validators=[MinValueValidator(1.0), MaxValueValidator(999.0)],
+        validators=[MinValueValidator(1.0), MaxValueValidator(9999.0)],
     ),
     models.Model,
 ):
@@ -67,7 +68,7 @@ class AmylaseModelMixin(
         verbose_name="Serum Amylase",
         units_choices=((IU_LITER, IU_LITER_DISPLAY),),
         decimal_places=1,
-        validators=[MinValueValidator(1.0), MaxValueValidator(999.0)],
+        validators=[MinValueValidator(1.0), MaxValueValidator(9999.0)],
     ),
     models.Model,
 ):
@@ -80,7 +81,7 @@ class GgtModelMixin(
         utest_id="ggt",
         units_choices=((IU_LITER, IU_LITER_DISPLAY),),
         decimal_places=0,
-        validators=[MinValueValidator(1.0), MaxValueValidator(999.0)],
+        validators=[MinValueValidator(1.0), MaxValueValidator(9999.0)],
     ),
     models.Model,
 ):

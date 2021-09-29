@@ -1,11 +1,7 @@
-from pprint import pprint
-
 from django.apps import apps as django_apps
 from django.test import TestCase
-from edc_action_item import site_action_items
 from edc_appointment.models import Appointment
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
-from edc_facility.import_holidays import import_holidays
 from edc_lab.models import Panel
 from edc_reportable import GRADE3, GRAMS_PER_DECILITER
 from edc_utils import get_utcnow

@@ -11,9 +11,10 @@ from edc_reportable import (
 from edc_reportable.choices import REPORTABLE
 
 
-class GlucoseModelMixin(models.Model):
+class IfgModelMixin(models.Model):
+    """Impaired Fasting Glucose"""
 
-    value_field_attr = "glucose_value"
+    value_field_attr = "ifg_value"
 
     is_poc = models.CharField(
         verbose_name="Was a point-of-care test used?",
@@ -29,8 +30,8 @@ class GlucoseModelMixin(models.Model):
         blank=False,
     )
 
-    glucose_value = models.DecimalField(
-        verbose_name="Blood Glucose",
+    ifg_value = models.DecimalField(
+        verbose_name="Blood Glucose (IFG)",
         max_digits=8,
         decimal_places=4,
         null=True,
@@ -38,13 +39,13 @@ class GlucoseModelMixin(models.Model):
         help_text="A `HIGH` reading may be entered as 9999.99",
     )
 
-    glucose_quantifier = models.CharField(
+    ifg_quantifier = models.CharField(
         max_length=10,
         choices=RESULT_QUANTIFIER,
         default=EQ,
     )
 
-    glucose_units = models.CharField(
+    ifg_units = models.CharField(
         verbose_name="units",
         max_length=15,
         choices=(
@@ -55,11 +56,11 @@ class GlucoseModelMixin(models.Model):
         blank=True,
     )
 
-    glucose_abnormal = models.CharField(
+    ifg_abnormal = models.CharField(
         verbose_name="abnormal", choices=YES_NO, max_length=25, null=True, blank=True
     )
 
-    glucose_reportable = models.CharField(
+    ifg_reportable = models.CharField(
         verbose_name="reportable",
         choices=REPORTABLE,
         max_length=25,
