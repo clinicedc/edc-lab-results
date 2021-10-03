@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from edc_constants.choices import FASTING_CHOICES, YES_NO
 from edc_constants.constants import FASTING
@@ -8,12 +9,23 @@ from edc_reportable import (
     MILLIMOLES_PER_LITER,
     MILLIMOLES_PER_LITER_DISPLAY,
 )
-from edc_reportable.choices import REPORTABLE
+
+from .factory import blood_results_model_mixin_factory
 
 
-class GlucoseModelMixin(models.Model):
-
-    value_field_attr = "glucose_value"
+class GlucoseModelMixin(
+    blood_results_model_mixin_factory(
+        utest_id="glucose",
+        verbose_name="Blood Glucose",
+        units_choices=(
+            (MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),
+            (MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER_DISPLAY),
+        ),
+        decimal_places=4,
+        validators=[MinValueValidator(1.0), MaxValueValidator(9999.0)],
+    ),
+    models.Model,
+):
 
     is_poc = models.CharField(
         verbose_name="Was a point-of-care test used?",
@@ -29,42 +41,10 @@ class GlucoseModelMixin(models.Model):
         blank=False,
     )
 
-    glucose_value = models.DecimalField(
-        verbose_name="Blood Glucose",
-        max_digits=8,
-        decimal_places=4,
-        null=True,
-        blank=True,
-        help_text="A `HIGH` reading may be entered as 9999.99",
-    )
-
     glucose_quantifier = models.CharField(
         max_length=10,
         choices=RESULT_QUANTIFIER,
         default=EQ,
-    )
-
-    glucose_units = models.CharField(
-        verbose_name="units",
-        max_length=15,
-        choices=(
-            (MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),
-            (MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER_DISPLAY),
-        ),
-        null=True,
-        blank=True,
-    )
-
-    glucose_abnormal = models.CharField(
-        verbose_name="abnormal", choices=YES_NO, max_length=25, null=True, blank=True
-    )
-
-    glucose_reportable = models.CharField(
-        verbose_name="reportable",
-        choices=REPORTABLE,
-        max_length=25,
-        null=True,
-        blank=True,
     )
 
     def get_summary_options(self):
