@@ -10,7 +10,7 @@ from .models import BloodResultsFbc, BloodResultsHba1c
 
 
 class BloodResultsFbcFormValidator(BloodResultsFormValidatorMixin, FormValidator):
-    panels = [fbc_panel]
+    panel = fbc_panel
 
 
 class BloodResultsHba1cFormValidator(BloodResultsFormValidatorMixin, FormValidator):
