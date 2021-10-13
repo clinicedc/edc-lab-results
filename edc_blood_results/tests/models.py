@@ -46,7 +46,7 @@ class AbcModelMixin(
 ):
     # HCT
     hct_value = models.DecimalField(
-        validators=[MinValueValidator(1.0), MaxValueValidator(999.0)],
+        validators=[MinValueValidator(1.00), MaxValueValidator(999.00)],
         verbose_name="Hematocrit",
         decimal_places=2,
         max_digits=6,

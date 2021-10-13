@@ -12,7 +12,7 @@ class CholModelMixin(
         decimal_places=2,
         max_digits=8,
         units_choices=((MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER),),
-        validators=[MinValueValidator(0.0), MaxValueValidator(999.0)],
+        validators=[MinValueValidator(0.00), MaxValueValidator(999.00)],
     ),
     models.Model,
 ):
@@ -26,7 +26,7 @@ class HdlModelMixin(
         decimal_places=2,
         max_digits=8,
         units_choices=((MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER),),
-        validators=[MinValueValidator(0.0), MaxValueValidator(999.0)],
+        validators=[MinValueValidator(0.00), MaxValueValidator(999.00)],
     ),
     models.Model,
 ):
@@ -40,7 +40,7 @@ class LdlModelMixin(
         decimal_places=2,
         max_digits=8,
         units_choices=((MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER),),
-        validators=[MinValueValidator(0.0), MaxValueValidator(999.0)],
+        validators=[MinValueValidator(0.00), MaxValueValidator(999.00)],
     ),
     models.Model,
 ):
@@ -54,7 +54,7 @@ class TrigModelMixin(
         decimal_places=2,
         max_digits=8,
         units_choices=((MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER),),
-        validators=[MinValueValidator(0.0), MaxValueValidator(999.0)],
+        validators=[MinValueValidator(0.00), MaxValueValidator(999.00)],
         verbose_name="Triglycerides",
     ),
     models.Model,

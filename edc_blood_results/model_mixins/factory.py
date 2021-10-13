@@ -19,7 +19,7 @@ def get_field_attrs(
     value_options = dict(
         verbose_name=verbose_name or utest_id.upper(),
         decimal_places=decimal_places or 2,
-        max_digits=max_digits or 6,
+        max_digits=max_digits or 8,
         validators=validators or [MinValueValidator(0.00)],
         null=True,
         blank=True,

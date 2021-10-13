@@ -2,6 +2,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from edc_constants.choices import FASTING_CHOICES, YES_NO
 from edc_constants.constants import FASTING
+from edc_glucose.constants import GLUCOSE_HIGH_READING
 from edc_lab.choices import RESULT_QUANTIFIER
 from edc_lab.constants import EQ
 from edc_reportable import (
@@ -21,8 +22,8 @@ class IfgModelMixin(
             (MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),
             (MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER_DISPLAY),
         ),
-        decimal_places=4,
-        validators=[MinValueValidator(1.0), MaxValueValidator(9999.0)],
+        decimal_places=2,
+        validators=[MinValueValidator(1.00), MaxValueValidator(GLUCOSE_HIGH_READING)],
     ),
     models.Model,
 ):

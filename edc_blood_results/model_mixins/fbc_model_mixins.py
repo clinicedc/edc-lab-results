@@ -80,7 +80,7 @@ class PlateletsModelMixin(
             (CELLS_PER_MILLIMETER_CUBED, CELLS_PER_MILLIMETER_CUBED_DISPLAY),
         ),
         decimal_places=0,
-        validators=[MinValueValidator(1.0), MaxValueValidator(9999.0)],
+        validators=[MinValueValidator(1), MaxValueValidator(9999)],
     ),
     models.Model,
 ):
