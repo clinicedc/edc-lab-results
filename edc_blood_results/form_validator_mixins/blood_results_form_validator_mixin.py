@@ -57,9 +57,7 @@ class BloodResultsFormValidatorMixin(
                     )
                 self.evaluate_value(f"{utest_id}_value")
             self.validate_reportable_fields(
-                reference_range_collection_name=(
-                    self.requisition.panel_object.reference_range_collection_name
-                ),
+                self.requisition.panel_object.reference_range_collection_name,
                 **self.reportables_evaluator_options,
             )
 
