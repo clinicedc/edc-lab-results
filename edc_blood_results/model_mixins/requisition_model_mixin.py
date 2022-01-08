@@ -16,6 +16,7 @@ class RequisitionModelMixin(models.Model):
         help_text="Start typing the requisition identifier or select one from this visit",
     )
 
+    # TODO: this should be assay datetime
     assay_datetime = models.DateTimeField(
         verbose_name="Result Report Date and Time",
         validators=[edc_models.datetime_not_future],
