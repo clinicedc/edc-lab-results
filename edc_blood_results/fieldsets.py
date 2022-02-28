@@ -23,12 +23,14 @@ class BloodResultFieldset:
         model_cls=None,
         extra_fieldsets=None,
         excluded_utest_ids=None,
+        exclude_units=None,
     ):
         self.panel = panel
         self.title = title or panel.name
         self.model_cls = model_cls
         self.extra_fieldsets = extra_fieldsets
         self.excluded_utest_ids = excluded_utest_ids or []
+        self.exclude_units = exclude_units
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.panel})"
@@ -71,6 +73,8 @@ class BloodResultFieldset:
             f"{code}_abnormal",
             f"{code}_reportable",
         ]
+        if self.exclude_units:
+            model_fields.remove(f"{code}_units")
         if self.model_cls:
             for field in model_fields:
                 try:

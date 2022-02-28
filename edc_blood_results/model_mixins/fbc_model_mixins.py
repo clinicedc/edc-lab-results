@@ -1,5 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from edc_lab_panel.model_mixin_factory import reportable_result_model_mixin_factory
 from edc_reportable import GRAMS_PER_DECILITER, PERCENT
 from edc_reportable.units import (
     CELLS_PER_MILLIMETER_CUBED,
@@ -9,11 +10,9 @@ from edc_reportable.units import (
     TEN_X_9_PER_LITER,
 )
 
-from .factory import blood_results_model_mixin_factory
-
 
 class HaemoglobinModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="haemoglobin",
         verbose_name="Haemoglobin",
         units_choices=((GRAMS_PER_DECILITER, GRAMS_PER_DECILITER),),
@@ -26,7 +25,7 @@ class HaemoglobinModelMixin(
 
 
 class HctModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="hct",
         verbose_name="Hematocrit",
         units_choices=((PERCENT, PERCENT),),
@@ -39,7 +38,7 @@ class HctModelMixin(
 
 
 class MchModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="mch",
         units_choices=((PICOGRAMS_PER_CELL, PICOGRAMS_PER_CELL),),
     ),
@@ -50,7 +49,7 @@ class MchModelMixin(
 
 
 class MchcModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="mchc",
         units_choices=((GRAMS_PER_DECILITER, GRAMS_PER_DECILITER),),
     ),
@@ -61,7 +60,7 @@ class MchcModelMixin(
 
 
 class McvModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="mcv",
         units_choices=((FEMTOLITERS_PER_CELL, FEMTOLITERS_PER_CELL),),
     ),
@@ -72,7 +71,7 @@ class McvModelMixin(
 
 
 class PlateletsModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="platelets",
         verbose_name="Platelets",
         units_choices=(
@@ -89,7 +88,7 @@ class PlateletsModelMixin(
 
 
 class RbcModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="rbc",
         verbose_name="Red blood cell count",
         units_choices=(
@@ -105,7 +104,7 @@ class RbcModelMixin(
 
 
 class WbcModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="wbc",
         units_choices=(
             (TEN_X_9_PER_LITER, TEN_X_9_PER_LITER),

@@ -19,6 +19,7 @@ class BloodResultsModelAdminMixin:
 
     list_display = ("abnormal", "reportable", "action_identifier")
 
+    # TODO: add filter to see below grade 3,4
     list_filter = ("results_abnormal", "results_reportable")
 
     search_fields = (

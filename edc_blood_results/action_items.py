@@ -21,11 +21,10 @@ subject_app_label = getattr(
 )
 
 
-class BaseBloodResultsAction(Action):
+class BaseResultsAction(Action):
     name = None
     display_name = None
     reference_model = None
-
     priority = HIGH_PRIORITY
     show_on_dashboard = True
     create_by_user = False
@@ -45,49 +44,49 @@ class BaseBloodResultsAction(Action):
         return next_actions
 
 
-class BloodResultsLftAction(BaseBloodResultsAction):
+class BloodResultsLftAction(BaseResultsAction):
     name = BLOOD_RESULTS_LFT_ACTION
     display_name = "Reportable result: LFT"
     reference_model = f"{subject_app_label}.bloodresultslft"
 
 
-class BloodResultsRftAction(BaseBloodResultsAction):
+class BloodResultsRftAction(BaseResultsAction):
     name = BLOOD_RESULTS_RFT_ACTION
     display_name = "Reportable result: RFT"
     reference_model = f"{subject_app_label}.bloodresultsrft"
 
 
-class BloodResultsFbcAction(BaseBloodResultsAction):
+class BloodResultsFbcAction(BaseResultsAction):
     name = BLOOD_RESULTS_FBC_ACTION
     display_name = "Reportable result: FBC"
     reference_model = f"{subject_app_label}.bloodresultsfbc"
 
 
-class BloodResultsLipidAction(BaseBloodResultsAction):
+class BloodResultsLipidAction(BaseResultsAction):
     name = BLOOD_RESULTS_LIPID_ACTION
     display_name = "Reportable result: LIPIDS"
     reference_model = f"{subject_app_label}.bloodresultslipid"
 
 
-class BloodResultsEgfrAction(BaseBloodResultsAction):
+class BloodResultsEgfrAction(BaseResultsAction):
     name = BLOOD_RESULTS_EGFR_ACTION
     display_name = "Reportable eGFR"
     reference_model = f"{subject_app_label}.bloodresultsfbc"
 
 
-class BloodResultsGluAction(BaseBloodResultsAction):
+class BloodResultsGluAction(BaseResultsAction):
     name = BLOOD_RESULTS_GLU_ACTION
     display_name = "Reportable Blood Glucose"
     reference_model = f"{subject_app_label}.bloodresultsglu"
 
 
-class BloodResultsHba1cAction(BaseBloodResultsAction):
+class BloodResultsHba1cAction(BaseResultsAction):
     name = BLOOD_RESULTS_HBA1C_ACTION
     display_name = "Reportable HbA1c"
     reference_model = f"{subject_app_label}.bloodresultshba1c"
 
 
-class BloodResultsInsulinAction(BaseBloodResultsAction):
+class BloodResultsInsulinAction(BaseResultsAction):
     name = BLOOD_RESULTS_INSULIN_ACTION
     display_name = "Reportable Insulin"
     reference_model = f"{subject_app_label}.bloodresultsins"

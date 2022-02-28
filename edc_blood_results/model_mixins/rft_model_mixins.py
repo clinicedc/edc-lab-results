@@ -1,5 +1,5 @@
-from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from edc_lab_panel.model_mixin_factory import reportable_result_model_mixin_factory
 from edc_reportable.units import (
     EGFR_UNITS,
     MICROMOLES_PER_LITER,
@@ -9,11 +9,9 @@ from edc_reportable.units import (
     MILLIMOLES_PER_LITER_DISPLAY,
 )
 
-from .factory import blood_results_model_mixin_factory
-
 
 class CreatinineModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="creatinine",
         verbose_name="Creatinine",
         units_choices=(
@@ -28,7 +26,7 @@ class CreatinineModelMixin(
 
 
 class EgfrModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="egfr",
         verbose_name="eGFR",
         decimal_places=4,
@@ -43,7 +41,7 @@ class EgfrModelMixin(
 
 
 class UreaModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="urea",
         verbose_name="Urea (BUN)",
         units_choices=((MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER_DISPLAY),),
@@ -55,7 +53,7 @@ class UreaModelMixin(
 
 
 class UricAcidModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="uric_acid",
         verbose_name="Uric Acid",
         decimal_places=4,

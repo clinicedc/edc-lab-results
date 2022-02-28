@@ -5,17 +5,16 @@ from edc_constants.constants import FASTING
 from edc_glucose.constants import GLUCOSE_HIGH_READING
 from edc_lab.choices import RESULT_QUANTIFIER
 from edc_lab.constants import EQ
+from edc_lab_panel.model_mixin_factory import reportable_result_model_mixin_factory
 from edc_reportable import (
     MILLIGRAMS_PER_DECILITER,
     MILLIMOLES_PER_LITER,
     MILLIMOLES_PER_LITER_DISPLAY,
 )
 
-from .factory import blood_results_model_mixin_factory
-
 
 class IfgModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="ifg",
         verbose_name="Blood Glucose (IFG)",
         units_choices=(

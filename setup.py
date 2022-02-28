@@ -23,6 +23,7 @@ setup(
     url="https://github.com/clinicedc/edc-blood-results",
     license="GPL license, see LICENSE",
     description="Simple blood result data collection format",
+    long_description_content_type="text/x-rst",
     long_description=README,
     zip_safe=False,
     keywords="django edc blood results",

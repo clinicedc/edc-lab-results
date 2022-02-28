@@ -31,7 +31,6 @@ from .lipid_model_mixins import (
     LdlModelMixin,
     TrigModelMixin,
 )
-from .requisition_model_mixin import RequisitionModelMixin
 from .rft_model_mixins import (
     CreatinineModelMixin,
     EgfrModelMixin,
