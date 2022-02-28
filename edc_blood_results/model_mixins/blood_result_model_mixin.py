@@ -96,7 +96,7 @@ class BloodResultsModelMixin(
     For example:
         field_name = creatinine_value
         reportables name: creatinine
-        value_field_suffix = "_value"z
+        value_field_suffix = "_value"
 
         -OR-
 
@@ -104,7 +104,7 @@ class BloodResultsModelMixin(
         reportables name: creatinine
         value_field_suffix = None
 
-    Requires additional attrs `subject_visit` and `requisition` from RequisitionModelMixin
+    Requires additional attrs `subject_visit` and `requisition` from CrfWithRequisitionModelMixin
 
     """
 

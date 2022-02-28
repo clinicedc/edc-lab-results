@@ -2,6 +2,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from edc_crf.crf_model_mixin import CrfModelMixin
 from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
+from edc_lab.model_mixins import CrfWithRequisitionModelMixin
+from edc_lab_panel.model_mixin_factory import reportable_result_model_mixin_factory
 from edc_model import models as edc_models
 from edc_reportable import GRAMS_PER_DECILITER
 
@@ -13,15 +15,13 @@ from edc_blood_results.model_mixins import (
     HctModelMixin,
     PlateletsModelMixin,
     RbcModelMixin,
-    RequisitionModelMixin,
     WbcModelMixin,
 )
-from edc_blood_results.model_mixins.factory import blood_results_model_mixin_factory
 
 
 class BloodResultsFbc(
     CrfWithActionModelMixin,
-    RequisitionModelMixin,
+    CrfWithRequisitionModelMixin,
     HaemoglobinModelMixin,
     HctModelMixin,
     RbcModelMixin,
@@ -41,7 +41,9 @@ class BloodResultsFbc(
 
 
 class AbcModelMixin(
-    blood_results_model_mixin_factory("hct", ((GRAMS_PER_DECILITER, GRAMS_PER_DECILITER),)),
+    reportable_result_model_mixin_factory(
+        "hct", ((GRAMS_PER_DECILITER, GRAMS_PER_DECILITER),)
+    ),
     models.Model,
 ):
     # HCT
@@ -61,7 +63,7 @@ class AbcModelMixin(
 # this model does not include the requisition and action item mixins
 class BloodResultsHba1c(
     CrfModelMixin,
-    RequisitionModelMixin,
+    CrfWithRequisitionModelMixin,
     Hba1cModelMixin,
     BloodResultsModelMixin,
     edc_models.BaseUuidModel,

@@ -1,12 +1,11 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from edc_lab_panel.model_mixin_factory import reportable_result_model_mixin_factory
 from edc_reportable.units import MILLIMOLES_PER_LITER
-
-from .factory import blood_results_model_mixin_factory
 
 
 class CholModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="chol",
         verbose_name="Total Cholesterol",
         decimal_places=2,
@@ -21,7 +20,7 @@ class CholModelMixin(
 
 
 class HdlModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="hdl",
         decimal_places=2,
         max_digits=8,
@@ -35,7 +34,7 @@ class HdlModelMixin(
 
 
 class LdlModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="ldl",
         decimal_places=2,
         max_digits=8,
@@ -49,7 +48,7 @@ class LdlModelMixin(
 
 
 class TrigModelMixin(
-    blood_results_model_mixin_factory(
+    reportable_result_model_mixin_factory(
         utest_id="trig",
         decimal_places=2,
         max_digits=8,
