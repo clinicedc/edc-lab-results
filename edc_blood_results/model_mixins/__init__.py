@@ -13,9 +13,9 @@ from .fbc_model_mixins import (
     RbcModelMixin,
     WbcModelMixin,
 )
+from .fbg_model_mixin import FbgModelMixin
 from .glucose_model_mixin import GlucoseModelMixin
 from .hba1c_model_mixin import Hba1cModelMixin
-from .ifg_model_mixin import IfgModelMixin
 from .insulin_model_mixin import InsulinModelMixin
 from .lft_model_mixins import (
     AlbuminModelMixin,

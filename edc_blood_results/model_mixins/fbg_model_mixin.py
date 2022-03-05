@@ -13,7 +13,7 @@ from edc_reportable import (
 )
 
 
-class IfgModelMixin(
+class FbgModelMixin(
     reportable_result_model_mixin_factory(
         utest_id="ifg",
         verbose_name="Blood Glucose (IFG)",
