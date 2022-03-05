@@ -3,7 +3,7 @@ from edc_constants.constants import FASTING, YES
 from edc_glucose.utils import validate_glucose_as_millimoles_per_liter
 
 
-class BloodResultsIfgFormValidatorMixin:
+class BloodResultsFbgFormValidatorMixin:
     @property
     def reportables_evaluator_options(self):
         if not self.cleaned_data.get("fasting"):
