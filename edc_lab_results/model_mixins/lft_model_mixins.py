@@ -2,7 +2,14 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from edc_lab_panel.model_mixin_factory import reportable_result_model_mixin_factory
 from edc_reportable import GRAMS_PER_DECILITER
-from edc_reportable.units import GRAMS_PER_LITER, IU_LITER, IU_LITER_DISPLAY
+from edc_reportable.units import (
+    GRAMS_PER_LITER,
+    IU_LITER,
+    IU_LITER_DISPLAY,
+    MICROMOLES_PER_LITER,
+    MICROMOLES_PER_LITER_DISPLAY,
+    MILLIGRAMS_PER_DECILITER,
+)
 
 
 class AlbuminModelMixin(
@@ -68,6 +75,33 @@ class AmylaseModelMixin(
         units_choices=((IU_LITER, IU_LITER_DISPLAY),),
         decimal_places=1,
         validators=[MinValueValidator(1.0), MaxValueValidator(9999.9)],
+    ),
+    models.Model,
+):
+    class Meta:
+        abstract = True
+
+
+class TotalBilirubinModelMixin(
+    reportable_result_model_mixin_factory(
+        utest_id="tbil",
+        verbose_name="Total Bilirubin",
+        units_choices=((MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),),
+    ),
+    models.Model,
+):
+    class Meta:
+        abstract = True
+
+
+class CrpModelMixin(
+    reportable_result_model_mixin_factory(
+        utest_id="crp",
+        verbose_name="C-reactive protein",
+        units_choices=(
+            (MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),
+            (MICROMOLES_PER_LITER, MICROMOLES_PER_LITER_DISPLAY),
+        ),
     ),
     models.Model,
 ):

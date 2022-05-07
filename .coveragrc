@@ -1,4 +1,0 @@
-[run]
-include = edc_blood_results/*
-omit = edc_blood_results/tests/*,edc_blood_results/migrations/*
-branch = 1

@@ -9,19 +9,19 @@ from django.test.runner import DiscoverRunner
 from edc_test_utils import DefaultTestSettings
 
 base_dir = dirname(abspath(__file__))
-app_name = "edc_blood_results"
+app_name = "edc_lab_results"
 
 DEFAULT_SETTINGS = DefaultTestSettings(
     calling_file=__file__,
     BASE_DIR=base_dir,
     APP_NAME=app_name,
     ETC_DIR=join(base_dir, app_name, "tests", "etc"),
-    SUBJECT_SCREENING_MODEL=f"edc_metadata.subjectscreening",
-    SUBJECT_CONSENT_MODEL=f"edc_metadata.subjectconsent",
-    SUBJECT_VISIT_MODEL=f"edc_metadata.subjectvisit",
-    SUBJECT_VISIT_MISSED_MODEL=f"edc_metadata.subjectvisitmissed",
-    SUBJECT_REQUISITION_MODEL=f"edc_metadata.subjectrequisition",
-    EDC_BLOOD_RESULTS_MODEL_APP_LABEL="edc_blood_results",
+    SUBJECT_SCREENING_MODEL="edc_metadata.subjectscreening",
+    SUBJECT_CONSENT_MODEL="edc_metadata.subjectconsent",
+    SUBJECT_VISIT_MODEL="edc_metadata.subjectvisit",
+    SUBJECT_VISIT_MISSED_MODEL="edc_metadata.subjectvisitmissed",
+    SUBJECT_REQUISITION_MODEL="edc_metadata.subjectrequisition",
+    EDC_BLOOD_RESULTS_MODEL_APP_LABEL="edc_lab_results",
     LIST_MODEL_APP_LABEL="edc_metadata",
     INSTALLED_APPS=[
         "django.contrib.admin",
@@ -52,7 +52,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "edc_timepoint.apps.AppConfig",
         "edc_visit_schedule.apps.AppConfig",
         "edc_visit_tracking.apps.AppConfig",
-        "edc_blood_results.apps.AppConfig",
+        "edc_lab_results.apps.AppConfig",
     ],
     RANDOMIZATION_LIST_PATH=join(base_dir, app_name, "tests", "test_randomization_list.csv"),
     add_dashboard_middleware=True,

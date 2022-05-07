@@ -13,10 +13,10 @@ from edc_reportable import (
 )
 
 
-class GlucoseModelMixin(
+class FbgModelMixin(
     reportable_result_model_mixin_factory(
-        utest_id="glucose",
-        verbose_name="Blood Glucose",
+        utest_id="ifg",
+        verbose_name="Blood Glucose (IFG)",
         units_choices=(
             (MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),
             (MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER_DISPLAY),
@@ -26,6 +26,7 @@ class GlucoseModelMixin(
     ),
     models.Model,
 ):
+    """Impaired Fasting Glucose"""
 
     is_poc = models.CharField(
         verbose_name="Was a point-of-care test used?",
@@ -41,14 +42,14 @@ class GlucoseModelMixin(
         blank=False,
     )
 
-    glucose_quantifier = models.CharField(
+    ifg_quantifier = models.CharField(
         max_length=10,
         choices=RESULT_QUANTIFIER,
         default=EQ,
     )
 
-    def get_summary_options(self):
-        opts = super().get_summary_options()
+    def get_summary_options(self) -> dict:
+        opts = super().get_summary_options()  # noqa
         fasting = True if self.fasting == FASTING else False
         opts.update(fasting=fasting)
         return opts

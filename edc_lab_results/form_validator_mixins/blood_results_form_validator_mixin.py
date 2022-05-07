@@ -1,4 +1,5 @@
 from collections import namedtuple
+from typing import Any
 
 from edc_constants.constants import NO, YES
 from edc_lab.form_validators import CrfRequisitionFormValidatorMixin
@@ -23,7 +24,7 @@ class BloodResultsFormValidatorMixin(
         """A hook to evaluate a field value"""
         pass
 
-    def clean(self) -> None:
+    def clean(self: Any) -> None:
         # do not require requisition if poc
         self.required_if(NO, field=self.is_poc_field, field_required="requisition")
         self.required_if_true(
@@ -62,7 +63,7 @@ class BloodResultsFormValidatorMixin(
             )
 
     @property
-    def requisition(self):
+    def requisition(self: Any):
         """Returns a Requisition instance or raises
         forms ValidationError.
 
@@ -74,13 +75,13 @@ class BloodResultsFormValidatorMixin(
         return self.validate_requisition(*self.panel_list)
 
     @property
-    def is_poc(self):
+    def is_poc(self: Any) -> bool:
         if self.cleaned_data.get(self.is_poc_field):
             return self.cleaned_data.get(self.is_poc_field) == YES
         return False
 
     @property
-    def fields_names_with_values(self) -> list:
+    def fields_names_with_values(self: Any) -> list:
         """Returns a list result `value` fields that are not None"""
         fields_names_with_values = []
         field_names = [f"{utest_id}{self.value_field_suffix}" for utest_id in self.utest_ids]
@@ -90,7 +91,7 @@ class BloodResultsFormValidatorMixin(
         return field_names
 
     @property
-    def utest_ids(self) -> list:
+    def utest_ids(self: Any) -> list:
         utest_ids = []
         for panel in self.panel_list:
             for utest_id in panel.utest_ids:
@@ -102,7 +103,7 @@ class BloodResultsFormValidatorMixin(
         return utest_ids
 
     @property
-    def panel_list(self) -> list:
+    def panel_list(self: Any) -> list:
         if self.panel:
             return [self.panel]
         return self.panels

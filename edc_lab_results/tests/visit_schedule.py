@@ -17,7 +17,7 @@ from edc_visit_schedule import (
 )
 
 crfs = FormsCollection(
-    Crf(show_order=1, model="edc_blood_results.BloodResultsFbc", required=True),
+    Crf(show_order=1, model="edc_lab_results.BloodResultsFbc", required=True),
 )
 
 requisitions = FormsCollection(

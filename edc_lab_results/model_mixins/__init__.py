@@ -3,6 +3,7 @@ from .blood_result_model_mixin import (
     BloodResultsMethodsModelMixin,
     BloodResultsModelMixin,
 )
+from .electrolytes_model_mixins import MagnesiumModelMixin, PotassiumModelMixin
 from .fbc_model_mixins import (
     HaemoglobinModelMixin,
     HctModelMixin,
@@ -23,7 +24,9 @@ from .lft_model_mixins import (
     AltModelMixin,
     AmylaseModelMixin,
     AstModelMixin,
+    CrpModelMixin,
     GgtModelMixin,
+    TotalBilirubinModelMixin,
 )
 from .lipid_model_mixins import (
     CholModelMixin,
@@ -31,6 +34,7 @@ from .lipid_model_mixins import (
     LdlModelMixin,
     TrigModelMixin,
 )
+from .proteinuria_model_mixin import ProteinuriaModelMixin
 from .rft_model_mixins import (
     CreatinineModelMixin,
     EgfrModelMixin,

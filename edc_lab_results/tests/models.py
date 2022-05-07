@@ -7,8 +7,8 @@ from edc_lab_panel.model_mixin_factory import reportable_result_model_mixin_fact
 from edc_model import models as edc_models
 from edc_reportable import GRAMS_PER_DECILITER
 
-from edc_blood_results import BLOOD_RESULTS_FBC_ACTION
-from edc_blood_results.model_mixins import (
+from edc_lab_results import BLOOD_RESULTS_FBC_ACTION
+from edc_lab_results.model_mixins import (
     BloodResultsModelMixin,
     HaemoglobinModelMixin,
     Hba1cModelMixin,

@@ -11,7 +11,7 @@ from edc_reportable.normal_data.africa import normal_data
 from edc_utils import get_utcnow
 from edc_visit_schedule import site_visit_schedules
 
-from edc_blood_results.action_items import register_actions
+from edc_lab_results.action_items import register_actions
 
 from .lab_profiles import subject_lab_profile
 from .visit_schedule import visit_schedule

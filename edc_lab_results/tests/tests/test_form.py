@@ -10,7 +10,7 @@ from edc_reportable import GRADE3, GRAMS_PER_DECILITER, PERCENT
 from edc_utils import get_utcnow
 from edc_visit_tracking.constants import SCHEDULED
 
-from edc_blood_results.action_items import register_actions
+from edc_lab_results.action_items import register_actions
 
 from ..forms import BloodResultsFbcForm, BloodResultsHba1cForm
 from ..test_case_mixin import TestCaseMixin

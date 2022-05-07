@@ -106,7 +106,7 @@ def register_actions():
 
         try:
             django_apps.get_model(action_item.reference_model)
-        except LookupError as e:
+        except LookupError:
             pass
         else:
             site_action_items.register(action_item)

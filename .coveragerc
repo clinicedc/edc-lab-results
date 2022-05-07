@@ -1,4 +1,4 @@
 [run]
-include = edc_blood_results/*
-omit = edc_blood_results/tests/*
+include = edc_lab_results/*
+omit = edc_lab_results/tests/*
 branch = 1

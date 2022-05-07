@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from edc_constants.choices import FASTING_CHOICES, YES_NO
@@ -13,10 +15,10 @@ from edc_reportable import (
 )
 
 
-class FbgModelMixin(
+class GlucoseModelMixin(
     reportable_result_model_mixin_factory(
-        utest_id="ifg",
-        verbose_name="Blood Glucose (IFG)",
+        utest_id="glucose",
+        verbose_name="Blood Glucose",
         units_choices=(
             (MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_DECILITER),
             (MILLIMOLES_PER_LITER, MILLIMOLES_PER_LITER_DISPLAY),
@@ -26,7 +28,6 @@ class FbgModelMixin(
     ),
     models.Model,
 ):
-    """Impaired Fasting Glucose"""
 
     is_poc = models.CharField(
         verbose_name="Was a point-of-care test used?",
@@ -42,14 +43,14 @@ class FbgModelMixin(
         blank=False,
     )
 
-    ifg_quantifier = models.CharField(
+    glucose_quantifier = models.CharField(
         max_length=10,
         choices=RESULT_QUANTIFIER,
         default=EQ,
     )
 
-    def get_summary_options(self):
-        opts = super().get_summary_options()
+    def get_summary_options(self: Any) -> dict:
+        opts = super().get_summary_options()  # noqa
         fasting = True if self.fasting == FASTING else False
         opts.update(fasting=fasting)
         return opts

@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.apps import apps as django_apps
 from django.db import models
 from edc_constants.choices import YES_NO, YES_NO_NA
@@ -33,7 +35,7 @@ class BloodResultsMethodsModelMixin(models.Model):
         self.summary = "\n".join(self.get_summary())
         super().save(*args, **kwargs)
 
-    def get_summary_options(self):
+    def get_summary_options(self: Any) -> dict:
         model_cls = django_apps.get_model("edc_registration.registeredsubject")
         registered_subject = model_cls.objects.get(
             subject_identifier=self.subject_visit.subject_identifier
@@ -44,10 +46,10 @@ class BloodResultsMethodsModelMixin(models.Model):
             report_datetime=self.subject_visit.report_datetime,
         )
 
-    def get_reference_range_collection_name(self):
+    def get_reference_range_collection_name(self: Any) -> str:
         return self.requisition.panel_object.reference_range_collection_name
 
-    def get_summary(self):
+    def get_summary(self: Any) -> list:
         opts = self.get_summary_options()
         summary = []
         for field_name in [f.name for f in self._meta.fields]:
@@ -76,11 +78,11 @@ class BloodResultsMethodsModelMixin(models.Model):
         return self.summary
 
     @property
-    def abnormal(self):
+    def abnormal(self: Any):
         return self.results_abnormal
 
     @property
-    def reportable(self):
+    def reportable(self: Any):
         return self.results_reportable
 
     class Meta:
@@ -104,7 +106,8 @@ class BloodResultsModelMixin(
         reportables name: creatinine
         value_field_suffix = None
 
-    Requires additional attrs `subject_visit` and `requisition` from CrfWithRequisitionModelMixin
+    Requires additional attrs `subject_visit` and `requisition`
+    from CrfWithRequisitionModelMixin
 
     """
 
