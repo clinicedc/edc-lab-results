@@ -73,8 +73,50 @@ class McvModelMixin(
 class NeutrophilModelMixin(
     reportable_result_model_mixin_factory(
         utest_id="neutrophil",
-        verbose_name="Neutrophils",
+        verbose_name="Neutrophil (abs)",
         units_choices=((TEN_X_9_PER_LITER, TEN_X_9_PER_LITER),),
+        decimal_places=0,
+        validators=[MinValueValidator(1), MaxValueValidator(9999)],
+    ),
+    models.Model,
+):
+    class Meta:
+        abstract = True
+
+
+class NeutrophilDiffModelMixin(
+    reportable_result_model_mixin_factory(
+        utest_id="neutrophil_diff",
+        verbose_name="Neutrophil (diff)",
+        units_choices=((PERCENT, PERCENT),),
+        decimal_places=0,
+        validators=[MinValueValidator(1), MaxValueValidator(9999)],
+    ),
+    models.Model,
+):
+    class Meta:
+        abstract = True
+
+
+class LymphocyteModelMixin(
+    reportable_result_model_mixin_factory(
+        utest_id="lymphocyte",
+        verbose_name="Lymphocyte (abs)",
+        units_choices=((TEN_X_9_PER_LITER, TEN_X_9_PER_LITER),),
+        decimal_places=0,
+        validators=[MinValueValidator(1), MaxValueValidator(9999)],
+    ),
+    models.Model,
+):
+    class Meta:
+        abstract = True
+
+
+class LymphocyteDiffModelMixin(
+    reportable_result_model_mixin_factory(
+        utest_id="lymphocyte_diff",
+        verbose_name="Lymphocyte (diff)",
+        units_choices=((PERCENT, PERCENT),),
         decimal_places=0,
         validators=[MinValueValidator(1), MaxValueValidator(9999)],
     ),
