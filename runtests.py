@@ -36,6 +36,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "multisite",
         "edc_appointment.apps.AppConfig",
         "edc_action_item.apps.AppConfig",
+        "edc_consent.apps.AppConfig",
         "edc_crf.apps.AppConfig",
         "edc_device.apps.AppConfig",
         "edc_facility.apps.AppConfig",
