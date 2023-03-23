@@ -10,18 +10,23 @@ from ..calculate_missing import calculate_missing
 
 
 class BloodResultsFieldsModelMixin(models.Model):
-
     results_abnormal = models.CharField(
         verbose_name="Are any of the above results abnormal?",
         choices=YES_NO,
         max_length=25,
+        help_text=(
+            "Abnormal results present at baseline or continuing from baseline not included."
+        ),
     )
 
     results_reportable = models.CharField(
-        verbose_name="If any results are abnormal, are results within grade 3 " "or above?",
+        verbose_name="If any results are abnormal, are results within grade 3 or above?",
         max_length=25,
         choices=YES_NO_NA,
-        help_text="If YES, this value will open Adverse Event Form.",
+        help_text=(
+            "If YES, this value will open Adverse Event Form. Grade 3 and 4 results "
+            "present at baseline or continuing from baseline not included"
+        ),
     )
 
     summary = models.TextField(null=True, blank=True)
