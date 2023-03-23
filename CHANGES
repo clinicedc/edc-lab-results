@@ -1,3 +1,7 @@
+0.1.37
+------
+- Update min validators and decimal place limits for abs/diff neutrophils and lymphocytes (#486)
+
 0.1.23
 ------
 - include eGFR drop as a utest id and model mixin
