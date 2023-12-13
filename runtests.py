@@ -19,6 +19,7 @@ project_settings = DefaultTestSettings(
     SUBJECT_REQUISITION_MODEL="edc_metadata.subjectrequisition",
     EDC_BLOOD_RESULTS_MODEL_APP_LABEL="edc_lab_results",
     LIST_MODEL_APP_LABEL="edc_metadata",
+    EDC_SITES_REGISTER_DEFAULT=True,
     INSTALLED_APPS=[
         "django.contrib.admin",
         "django.contrib.auth",
