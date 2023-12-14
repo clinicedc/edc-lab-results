@@ -178,8 +178,8 @@ If all result models are prefixed with "bloodresult", you can filter on the path
 .. |pypi| image:: https://img.shields.io/pypi/v/edc-lab-results.svg
     :target: https://pypi.python.org/pypi/edc-lab-results
 
-.. |actions| image:: https://github.com/clinicedc/edc-lab-results/workflows/build/badge.svg?branch=develop
-  :target: https://github.com/clinicedc/edc-lab-results/actions?query=workflow:build
+.. |actions| image:: https://github.com/clinicedc/edc-lab-results/actions/workflows/build.yml/badge.svg
+  :target: https://github.com/clinicedc/edc-lab-results/actions/workflows/build.yml
 
 .. |codecov| image:: https://codecov.io/gh/clinicedc/edc-lab-results/branch/develop/graph/badge.svg
   :target: https://codecov.io/gh/clinicedc/edc-lab-results
